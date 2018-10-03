@@ -32,16 +32,6 @@ export class LoginComponent implements OnInit {
           this.accountService.setLogged(true);
           this.router.navigate(['']);
         }
-        /*
-        if (token.access_token !== '' && token.status !== 400) {
-          localStorage.setItem('token', token.access_token);
-          localStorage.setItem('user', username);
-          this.router.navigate(['']);
-        } else {
-          this.message.clear();
-          this.message.add(token.error.error_description);
-        }
-        */
       });
   }
 }

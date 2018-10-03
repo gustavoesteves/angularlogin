@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../auth.service';
-import { User, IUserLogin, IToken } from '../user';
+import { IUserLogin, IToken, IUserRegister } from '../user';
 import { IError } from '../../../global/handleError';
 import { MessageService } from '../../../message/message.service';
 
@@ -22,14 +22,19 @@ export class RegisterComponent implements OnInit {
   ngOnInit() { }
 
   registerUser(username: string, email: string, password: string, confirmPassword: string): void {
-    this.accountService.registerUser({ username, email, password, confirmPassword } as User)
+    this.accountService.registerUser({ username, email, password, confirmPassword } as IUserRegister)
       .subscribe((_user: IError | any) => {
         if (_user === null) {
           this.accountService.getToken({ email: username, password: password } as IUserLogin)
-            .subscribe((token: IToken | IError | any) => {
-              // localStorage.setItem('token', token.access_token);
-              // localStorage.setItem('user', username);
-              this.router.navigate(['']);
+            .subscribe((token: IError | any) => {
+              if (token != null) {
+                this.message.clear();
+                this.message.add(token.error);
+              } else {
+                this.accountService.setUsername(username);
+                this.accountService.setLogged(true);
+                this.router.navigate(['']);
+              }
             });
         } else {
           this.message.clear();

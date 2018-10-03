@@ -1,4 +1,4 @@
-export class User {
+export interface IUserRegister {
   username: string;
   email: string;
   password: string;
@@ -6,7 +6,6 @@ export class User {
 }
 
 export interface IUserLogin {
-  // grant_type: string;
   email: string;
   password: string;
 }
