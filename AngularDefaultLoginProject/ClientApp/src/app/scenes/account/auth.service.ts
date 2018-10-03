@@ -5,7 +5,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 
 import { MessageService } from '../../message/message.service';
 import { User, IUserLogin, IToken, IChangePassword } from './user';
-import { HttpOptions, RegisterUrl, LoginUrl, ValuesUrl, TestUrl, LogoutUrl, ChangePassUrl } from '../../global/urls';
+import { HttpOptions, RegisterUrl, LoginUrl, ValuesUrl, TestUrl, LogoutUrl, ChangePassUrl, ValidateCookieUrl } from '../../global/urls';
 import { HandleError, IError } from '../../global/handleError';
 import { BodyEncode } from '../../global/functions';
 
@@ -14,14 +14,23 @@ import { BodyEncode } from '../../global/functions';
 })
 export class AuthService {
   _error = {} as IError;
+
   private username = new BehaviorSubject<string>('');
   _username = this.username.asObservable();
+
+  private logged = new BehaviorSubject<boolean>(false);
+  _logged = this.logged.asObservable();
+
 
   constructor(private http: HttpClient,
     private messageService: MessageService) { }
 
   setUsername(username: string) {
     this.username.next(username);
+  }
+
+  setLogged(logged: boolean) {
+    this.logged.next(logged);
   }
 
   //////// methods //////////
@@ -48,6 +57,12 @@ export class AuthService {
   postLogOut(): Observable<HttpResponse<Object>> {
     return this.http.post<HttpResponse<Object>>(LogoutUrl, HttpOptions)
       .pipe(catchError(HandleError<HttpResponse<Object>>('Login')));
+  }
+
+  /** GET: ValidateCookie */
+  validateCookie(): Observable<HttpResponse<Object>> {
+    return this.http.get<HttpResponse<Object>>(ValidateCookieUrl, HttpOptions)
+      .pipe(catchError(HandleError<HttpResponse<Object>>('ValidateCookie')));
   }
 
   /** POST: ChangePassword */

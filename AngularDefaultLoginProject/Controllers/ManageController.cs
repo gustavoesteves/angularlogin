@@ -25,6 +25,13 @@ namespace AngularDefaultLoginProject.Controllers
             _signInManager = signInManager;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ValidateCookie()
+        {
+            var userEmail = (await _userManager.GetUserAsync(HttpContext.User))?.Email;
+            return Ok(userEmail);
+        }
+
         [HttpPost]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {

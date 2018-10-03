@@ -10,15 +10,22 @@ import { IError } from '../../../global/handleError';
 export class NavmenuComponent implements OnInit {
   collapsed = true;
   username: string;
-  show = true;
+  show: boolean;
 
-  constructor(private accountService: AuthService) { }
+  constructor(private accountService: AuthService) {
+    this.accountService._logged.subscribe(result => {
+      this.show = result;
+    });
+    this.accountService._username.subscribe(result => {
+      this.username = result;
+    });
+  }
 
   ngOnInit() {
-    this.accountService._username.subscribe(value => {
-      if (value !== '') {
-        this.username = value;
-        this.logout();
+    this.accountService.validateCookie().subscribe((result: any) => {
+      if (result.error.text !== undefined) {
+        this.accountService.setUsername(result.error.text);
+        this.accountService.setLogged(true);
       }
     });
   }
@@ -27,15 +34,11 @@ export class NavmenuComponent implements OnInit {
     this.collapsed = !this.collapsed;
   }
 
-  logout(): void {
-    this.show = !this.show;
-  }
-
   userLogout(): void {
     this.accountService.postLogOut().subscribe((logout: IError | any) => {
       if (logout === null) {
         this.accountService.setUsername('');
-        this.logout();
+        this.accountService.setLogged(false);
       }
     });
   }

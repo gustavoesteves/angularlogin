@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
           this.message.add(token.error);
         } else {
           this.accountService.setUsername(username);
+          this.accountService.setLogged(true);
           this.router.navigate(['']);
         }
         /*
