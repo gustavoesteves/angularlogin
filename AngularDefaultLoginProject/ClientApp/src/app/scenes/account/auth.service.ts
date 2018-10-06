@@ -4,7 +4,7 @@ import { Observable, InteropObservable, BehaviorSubject } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 
 import { MessageService } from '../../message/message.service';
-import { User, IUserLogin, IToken, IChangePassword } from './user';
+import { User, IUserLogin, IChangePassword } from './user';
 import { HttpOptions, RegisterUrl, LoginUrl, ValuesUrl, TestUrl, LogoutUrl, ChangePassUrl, ValidateCookieUrl } from '../../global/urls';
 import { HandleError, IError } from '../../global/handleError';
 import { BodyEncode } from '../../global/functions';
@@ -35,13 +35,7 @@ export class AuthService {
 
   //////// methods //////////
 
-  /** GET: get Test string after login */
-  getTest(): Observable<HttpResponse<Object>> {
-    return this.http.get<HttpResponse<Object>>(TestUrl, HttpOptions)
-      .pipe(catchError(HandleError<HttpResponse<Object>>('Login')));
-  }
-
-  /** POST: get Token from server */
+  /** POST: get Login from server */
   getToken(user: IUserLogin): Observable<HttpResponse<Object>> {
     return this.http.post<HttpResponse<Object>>(LoginUrl, BodyEncode<IUserLogin>(user), HttpOptions)
       .pipe(catchError(HandleError<HttpResponse<Object>>('Login')));
@@ -70,13 +64,5 @@ export class AuthService {
     return this.http.post<HttpResponse<Object>>(ChangePassUrl, BodyEncode<IChangePassword>(user), HttpOptions)
       .pipe(catchError(HandleError<HttpResponse<Object>>('ChangePassword')));
   }
-  //////// authentication //////////
 
-  loggedIn(): boolean {
-    return !!localStorage.getItem('token');
-  }
-
-  getValues(): Observable<any> {
-    return this.http.get<any>(ValuesUrl, HttpOptions);
-  }
 }

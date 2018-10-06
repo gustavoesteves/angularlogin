@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { AuthService } from '../../account/auth.service';
 import { IError } from '../../../global/handleError';
 
@@ -12,7 +14,9 @@ export class NavmenuComponent implements OnInit {
   username: string;
   show: boolean;
 
-  constructor(private accountService: AuthService) {
+  constructor(
+    private accountService: AuthService,
+    private router: Router) {
     this.accountService._logged.subscribe(result => {
       this.show = result;
     });
@@ -21,14 +25,7 @@ export class NavmenuComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.accountService.validateCookie().subscribe((result: any) => {
-      if (result.error.text !== undefined) {
-        this.accountService.setUsername(result.error.text);
-        this.accountService.setLogged(true);
-      }
-    });
-  }
+  ngOnInit() { }
 
   toggleCollapsed(): void {
     this.collapsed = !this.collapsed;
@@ -39,6 +36,7 @@ export class NavmenuComponent implements OnInit {
       if (logout === null) {
         this.accountService.setUsername('');
         this.accountService.setLogged(false);
+        this.router.navigate(['/Home']);
       }
     });
   }

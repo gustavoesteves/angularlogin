@@ -10,13 +10,6 @@ export interface IUserLogin {
   password: string;
 }
 
-export interface IToken {
-  access_token: string;
-  expires_in: number;
-  token_type: string;
-  userName: string;
-}
-
 export interface IChangePassword {
   oldPassword: string;
   newPassword: string;
