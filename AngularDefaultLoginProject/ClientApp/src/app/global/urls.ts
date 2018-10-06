@@ -8,7 +8,7 @@ export const HttpOptions = {
 };
 
 // Developer
-const deployUrl = 'https://localhost:44381/';
+const deployUrl = 'https://localhost:44364/';
 
 // IIS Deploy
 // const deployUrl = 'http://www.defaultidentityapi.code/';

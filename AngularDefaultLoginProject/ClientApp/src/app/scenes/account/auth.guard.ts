@@ -31,11 +31,5 @@ export class AuthGuard implements CanActivate {
 
     return subject.asObservable();
   }
-  /*
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return true;
-  }
-  */
+ 
 }

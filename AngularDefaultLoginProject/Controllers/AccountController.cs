@@ -330,7 +330,7 @@ namespace AngularDefaultLoginProject.Controllers
         {
             if (userId == null || code == null)
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return Ok();
             }
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
@@ -450,7 +450,7 @@ namespace AngularDefaultLoginProject.Controllers
             }
             else
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return Ok();
             }
         }
 

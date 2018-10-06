@@ -4,8 +4,8 @@ import { Observable, InteropObservable, BehaviorSubject } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 
 import { MessageService } from '../../message/message.service';
-import { User, IUserLogin, IChangePassword } from './user';
-import { HttpOptions, RegisterUrl, LoginUrl, ValuesUrl, TestUrl, LogoutUrl, ChangePassUrl, ValidateCookieUrl } from '../../global/urls';
+import { IUserLogin, IChangePassword, IUserRegister } from './user';
+import { HttpOptions, RegisterUrl, LoginUrl, LogoutUrl, ChangePassUrl, ValidateCookieUrl } from '../../global/urls';
 import { HandleError, IError } from '../../global/handleError';
 import { BodyEncode } from '../../global/functions';
 
@@ -42,15 +42,15 @@ export class AuthService {
   }
 
   /** POST: add a new user to the server */
-  registerUser(user: User): Observable<User | IError> {
-    return this.http.post<User>(RegisterUrl, BodyEncode<User>(user), HttpOptions)
+  registerUser(user: IUserRegister): Observable<IUserRegister | IError> {
+    return this.http.post<IUserRegister>(RegisterUrl, BodyEncode<IUserRegister>(user), HttpOptions)
       .pipe(catchError(HandleError<IError>('Register', this._error)));
   }
 
   /** POST: Logout */
   postLogOut(): Observable<HttpResponse<Object>> {
     return this.http.post<HttpResponse<Object>>(LogoutUrl, HttpOptions)
-      .pipe(catchError(HandleError<HttpResponse<Object>>('Login')));
+      .pipe(catchError(HandleError<HttpResponse<Object>>('Logout')));
   }
 
   /** GET: ValidateCookie */
