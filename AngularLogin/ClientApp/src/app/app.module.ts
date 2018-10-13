@@ -17,6 +17,7 @@ import { PagenotfoundComponent } from './scenes/layout/pagenotfound/pagenotfound
 import { ManageComponent } from './scenes/account/manage/manage.component';
 import { ChangepasswordComponent } from './scenes/account/changepassword/changepassword.component';
 import { HomeloggedComponent } from './scenes/logged/homelogged/homelogged.component';
+import { AboutComponent } from './scenes/layout/about/about.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HomeloggedComponent } from './scenes/logged/homelogged/homelogged.compo
     PagenotfoundComponent,
     ManageComponent,
     ChangepasswordComponent,
-    HomeloggedComponent
+    HomeloggedComponent,
+    AboutComponent
   ],
   imports: [
     NgbModule,

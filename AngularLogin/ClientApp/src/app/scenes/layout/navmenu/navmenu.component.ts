@@ -10,9 +10,10 @@ import { IError } from '../../../global/handleError';
   styleUrls: ['./navmenu.component.css']
 })
 export class NavmenuComponent implements OnInit {
-  collapsed = true;
   username: string;
   show: boolean;
+  active = '';
+  activeMenu = false;
 
   constructor(
     private accountService: AuthService,
@@ -27,10 +28,6 @@ export class NavmenuComponent implements OnInit {
 
   ngOnInit() { }
 
-  toggleCollapsed(): void {
-    this.collapsed = !this.collapsed;
-  }
-
   userLogout(): void {
     this.accountService.postLogOut().subscribe((logout: IError | any) => {
       if (logout === null) {
@@ -40,4 +37,10 @@ export class NavmenuComponent implements OnInit {
       }
     });
   }
+
+  menuControl() {
+    this.activeMenu = !this.activeMenu;
+    this.active = this.activeMenu ? 'active' : '';
+  }
+
 }

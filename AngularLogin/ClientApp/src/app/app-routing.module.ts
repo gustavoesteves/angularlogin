@@ -10,10 +10,12 @@ import { AuthGuard } from './scenes/account/auth.guard';
 import { ChangepasswordComponent } from './scenes/account/changepassword/changepassword.component';
 import { ManageComponent } from './scenes/account/manage/manage.component';
 import { HomeloggedComponent } from './scenes/logged/homelogged/homelogged.component';
+import { AboutComponent } from './scenes/layout/about/about.component'
 
 const routes: Routes = [
   { path: '', canActivate: [AuthGuard], component: HomeloggedComponent },
   { path: 'Home', component: HomeComponent },
+  { path: 'About', component: AboutComponent },
   { path: 'Register', component: RegisterComponent },
   { path: 'ForgetPassword', component: ForgetpasswordComponent },
   { path: 'Login', component: LoginComponent },
