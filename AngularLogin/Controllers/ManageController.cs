@@ -47,6 +47,7 @@ namespace AngularLogin.Controllers
             if (!result.Succeeded)
             {
                 AddErrors(result);
+                return BadRequest(ModelState);
             }
 
             return Ok();

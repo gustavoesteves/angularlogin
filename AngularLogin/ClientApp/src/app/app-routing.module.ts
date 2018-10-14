@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'Register', component: RegisterComponent },
   { path: 'ForgetPassword', component: ForgetpasswordComponent },
   { path: 'Login', component: LoginComponent },
-  { path: 'ChangePassword', component: ChangepasswordComponent },
+  { path: 'ChangePassword', canActivate: [AuthGuard], component: ChangepasswordComponent },
   { path: 'Manage', canActivate: [AuthGuard], component: ManageComponent },
   { path: '**', component: PagenotfoundComponent }
 ];
