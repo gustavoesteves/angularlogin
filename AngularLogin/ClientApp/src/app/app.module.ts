@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavmenuComponent } from './scenes/layout/navmenu/navmenu.component';
@@ -36,7 +35,6 @@ import { AboutComponent } from './scenes/layout/about/about.component';
     AboutComponent
   ],
   imports: [
-    NgbModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     AppRoutingModule,
     HttpClientModule,
