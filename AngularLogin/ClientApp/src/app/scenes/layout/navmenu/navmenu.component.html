@@ -1,32 +1,43 @@
-<!-- Navigation -->
-<a class="menu-toggle rounded active" (click)="menuControl()">
-  <svg *ngIf="!activeMenu" aria-hidden="true" data-prefix="fas" data-icon="bars" class="menu-bar-nav text-light" role="img" xmlns="http://www.w3.org/2000/svg"
-       viewBox="0 0 448 512">
-    <path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path>
-  </svg>
-  <svg *ngIf="activeMenu" aria-hidden="true" data-prefix="fas" data-icon="times" class="menu-bar-nav text-light" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512">
-    <path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path>
-  </svg>
-</a>
-<nav id="sidebar-wrapper" class={{active}}>
-  <ul class="sidebar-nav">
-    <li class="sidebar-brand">
-      <a class="js-scroll-trigger" routerLink="/" routerLinkActive="active">Home</a>
-    </li>
-    <li class="sidebar-nav-item">
-      <a class="js-scroll-trigger" routerLink="/About" routerLinkActive="active">About</a>
-    </li>
-    <li *ngIf="!show" class="sidebar-nav-item">
-      <a class="js-scroll-trigger" routerLink="/Register" routerLinkActive="active">Register</a>
-    </li>
-    <li *ngIf="!show" class="sidebar-nav-item">
-      <a class="js-scroll-trigger" routerLink="/Login" routerLinkActive="active">Login</a>
-    </li>
-    <li *ngIf="show" class="sidebar-nav-item">
-      <a class="js-scroll-trigger" routerLink="/Manage" routerLinkActive="active">{{username}}</a>
-    </li>
-    <li *ngIf="show" class="sidebar-nav-item">
-      <a (click)="userLogout()" class="js-scroll-trigger" routerLink="/" routerLinkActive="active">Logout</a>
-    </li>
-  </ul>
-</nav>
+<div id="sidebar" class={{active}}>
+  <div class="inner">
+
+    <!-- Search -->
+    <section id="search" class="alt">
+      <form method="post" action="#">
+        <input type="text" name="query" id="query" placeholder="Search" />
+      </form>
+    </section>
+
+    <!-- Menu -->
+    <nav id="menu">
+      <header class="major">
+        <h2>Menu</h2>
+      </header>
+      <ul>
+        <li><a routerLink="/">Homepage</a></li>
+        <li><a routerLink="/About">About</a></li>
+        <li *ngIf="!show"><a routerLink="/Register">Register</a></li>
+        <li *ngIf="!show"><a routerLink="/Login">Login</a></li>
+        <li *ngIf="show"><a routerLink="/Manage">{{username}}</a></li>
+        <li *ngIf="show"><a (click)="userLogout()" routerLink="/">Logout</a></li>
+      </ul>
+    </nav>
+    <!-- Section -->
+    <section>
+      <header class="major">
+        <h2>Get in touch</h2>
+      </header>
+      <p>Feel free to contact me and/or download or contribute to this project. I really appreciate.</p>
+      <ul class="contact">
+        <li class="fa-envelope-o"><a href="#">gustavo.esteves@gmail.com</a></li>
+        <li class="fa-phone">(000) 000-0000</li>
+        <li class="fa-home">
+          1234 Somewhere Road #8254<br />
+          Nashville, TN 00000-0000
+        </li>
+      </ul>
+    </section>
+    <app-footer></app-footer>
+  </div>
+  <a class="toggle" (click)="menuControl()"></a>
+</div>

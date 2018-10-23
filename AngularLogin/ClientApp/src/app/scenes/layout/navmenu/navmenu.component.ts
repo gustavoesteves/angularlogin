@@ -40,7 +40,7 @@ export class NavmenuComponent implements OnInit {
 
   menuControl() {
     this.activeMenu = !this.activeMenu;
-    this.active = this.activeMenu ? 'active' : '';
+    this.active = this.activeMenu ? 'inactive' : '';
   }
 
 }

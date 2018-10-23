@@ -1,30 +1,30 @@
-<div class="container">
-  <h2>Login</h2>
-  <h4>Use a local account to log in.</h4>
-  <hr />
-  <div class="col-md-4">
-    <section>
-      <div class="form-group">
-        <label>User</label>
-        <input #email class="form-control" id="User" />
+<section>
+  <header class="main">
+    <h1>Login</h1>
+  </header>
+  <h4 id="content">Use a local account to log in.</h4>
+  <form>
+    <div class="row gtr-uniform">
+      <div class="col-8">
+        <input #email id="User" type="email" placeholder="Email" />
       </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input #password class="form-control" id="Password" type="password" />
+      <div class="col-8">
+        <input #password id="Password" type="password" placeholder="Password" />
       </div>
-      <app-messages></app-messages>
-      <div class="form-group">
-        <div class="checkbox">
-          <label>
-            <input data-val="true" id="RememberMe" name="RememberMe" value="true" type="checkbox" /> Remember me?
-          </label>
-        </div>
+      <div class="col-8">
+        <input data-val="true" id="RememberMe" name="RememberMe" value="true" type="checkbox" />
+        <label>Remember me?</label>
       </div>
-      <input name="RememberMe" value="false" type="hidden" />
-      <button (click)="loginUser(email.value, password.value);" type="submit" class="btn btn-light">Log in</button>
-    </section>
+      <div class="col-8">
+        <app-messages></app-messages>
+      </div>
+      <div class="col-8">
+        <button (click)="loginUser(email.value, password.value);" type="submit" class="btn btn-light">Log in</button>
+      </div>
+    </div>
+  </form>
+  <div class="col-8">
+    <a class="nav-link" routerLink="/ForgetPassword">Forgot your Password?</a>
   </div>
-  <a class="nav-link" routerLink="/ForgetPassword">Forgot your Password?</a>
   <a class="nav-link" routerLink="/Register">Register as a new user?</a>
-  <hr />
-</div>
+</section>

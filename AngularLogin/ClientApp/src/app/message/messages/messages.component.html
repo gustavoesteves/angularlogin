@@ -1,1 +1,3 @@
-<div *ngFor='let message of messageService.messages' class="alert alert-danger"> {{message}} </div>
+<div class={{messageService.active}}>
+  <div *ngFor="let message of messageService.messages">*{{message}} </div>
+</div>
