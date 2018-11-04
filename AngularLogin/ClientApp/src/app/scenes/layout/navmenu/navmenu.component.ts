@@ -12,8 +12,7 @@ import { IError } from '../../../global/handleError';
 export class NavmenuComponent implements OnInit {
   username: string;
   show: boolean;
-  active = '';
-  activeMenu = false;
+  active = 'inactive';
 
   constructor(
     private accountService: AuthService,
@@ -39,8 +38,7 @@ export class NavmenuComponent implements OnInit {
   }
 
   menuControl() {
-    this.activeMenu = !this.activeMenu;
-    this.active = this.activeMenu ? 'inactive' : '';
+    this.active = this.active === '' ? 'inactive' : '';
   }
 
 }

@@ -19,8 +19,14 @@
         <app-messages></app-messages>
       </div>
       <div class="col-8">
-        <button (click)="loginUser(email.value, password.value);" type="submit" class="btn btn-light">Log in</button>
+        <button (click)="loginUser(email.value, password.value);" type="submit" class="btn btn-light">Login</button>
       </div>
+    </div>
+    <hr />
+    <div class="col-8">
+      <a href="https://accounts.google.com/o/oauth2/auth" class="btn btn-light">
+        <span class="icon fa-google-plus"> Login with Google+</span>
+      </a>
     </div>
   </form>
   <div class="col-8">

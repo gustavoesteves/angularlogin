@@ -71,6 +71,13 @@ namespace AngularLogin
                 options.SlidingExpiration = true;
             });
 
+            // Add Google Authentication
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = "974058063144-0l291t0hji2f47h6hss9jjl66vh42ar4.apps.googleusercontent.com";
+                googleOptions.ClientSecret = "y527bWeR07e8JmgrHv_HCmtu";
+            });
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
