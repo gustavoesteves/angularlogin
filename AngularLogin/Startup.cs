@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using NSwag.AspNetCore;
 
 /*
  * Open the Package Manager Console
@@ -108,6 +109,11 @@ namespace AngularLogin
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+
+            app.UseSwaggerUi3(settings =>
+            {
+                settings.SwaggerRoute = "/swagger/swagger.json";
+            });
 
             app.UseAuthentication();
 

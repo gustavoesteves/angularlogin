@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 namespace AngularLogin.Controllers
 {
     [Authorize]
+    [ApiController]
     [Route("api/[controller]/[action]")]
     public class AccountController : Controller
     {
